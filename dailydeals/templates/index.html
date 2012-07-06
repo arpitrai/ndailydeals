@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>List of Daily Deals in Singapore</title>
+	<meta name="description" content="A list of all the GroupOn like daily deals in Singapore. Refreshed everyday at 12pm." />
+    <link media="all" rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/all.css" />
+    <!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ie.css" /><![endif]-->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26298675-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+     </script>
+</head>
+<body>
+	<div class="w1">
+		<div id="wrapper">
+			<div id="header">
+                <h1 class="logo"><a href="/">List of Daily Deals in {{ deals.0.city }}<span class="mark"> - {{ today_datetime|date:"dS M Y" }}</span></a></h1>
+				<div class="heading">
+					<p>Deals in Other Cities</p>
+					<ul class="nav">
+                        <li><a href="{% if request.path == '/' %}deals/singapore{% else %}../singapore{% endif %}"><span><strong>Singapore</strong></span></a></li>
+                        <li><a href="{% if request.path == '/' %}deals/bangalore{% else %}../bangalore{% endif %}"><span><strong>Bangalore</strong></span></a></li>
+                        <li><a href="{% if request.path == '/' %}deals/bombay{% else %}../bombay{% endif %}"><span><strong>Bombay</strong></span></a></li>
+                        <li><a href="{% if request.path == '/' %}deals/chennai{% else %}../chennai{% endif %}"><span><strong>Chennai</strong></span></a></li>
+                        <li><a href="{% if request.path == '/' %}deals/delhi{% else %}../delhi{% endif %}"><span><strong>Delhi</strong></span></a></li>
+                        <li><a href="{% if request.path == '/' %}deals/kolkata{% else %}../kolkata{% endif %}"><span><strong>Kolkata</strong></span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="main">
+				<div class="container">
+					<div id="content">
+						<ul class="list">
+                            {% for deal in deals %}
+							<li>
+								<div class="holder">
+                                    <a class="image" href="{{ deal.source_website_url }}">
+                                        <img src="{{ STATIC_URL }}{{ deal.source_website_logo }}" alt="image" />
+									</a>
+									<div class="text">
+										<div class="block">
+                                            <p>{{ deal.description|safe }}</p>
+										</div>
+									</div>
+									<div class="box">
+                                        <span class="big">{{ deal.price }}</span><span class="small">{{ deal.currency }}</span>
+									</div>
+                                    <a href="{{ deal.url }}" class="check-out">check out</a>
+								</div>
+							</li>
+                            {% endfor %}
+						</ul>
+						<div class="form">
+							<form action="#" class="form-subs">
+								<fieldset>
+									<label for="subscrible">Subscribe to our daily deals newsletter</label>
+									<span class="text"><input id="subscrible" type="text" /></span>
+									<input type="submit" class="btn-subscrible" />
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<ul class="add-nav">
+					<!--<li><a href="#">About Us</a></li>
+					<li><a href="mailto: arpitrai@gmail.com">Contact Us</a></li>-->
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
